@@ -1,9 +1,16 @@
 import utils
 import time
 
+"""
+sample CLI based TODO list that provide different functionalities,
+
+developed by @dan-kingo
+visit my github page: https://github.com/dan-kingo
+"""
+
 today = time.strftime("%b %d, %Y at %I:%M:%S %p")
 
-print("Today's date is: ", today)
+print("\nToday's date is: ", today)
 print("Type 'help' to get all of the command!")
 
 while True:
@@ -11,51 +18,80 @@ while True:
 
     if command.startswith("add"):
         todos = utils.get_todos()
+        if len(command) > 3:
+            todo = command[4:] + "\n"
 
-        todo = command[4:] + "\n"
-        todos.append(todo)
+            todos.append(todo)
+        else:
+            print("Please add a note it is empty!")
 
         utils.set_todos(todos)
 
     elif command.startswith("show"):
-        print("Your Todos: \n")
-        todos = utils.get_todos()
 
-        for index, todo in enumerate(todos):
-            todo = todo.strip("\n")
-            print(f"{index + 1}. {todo}")
+        todos = utils.get_todos()
+        if todos.__len__() > 0:
+            print("Your Todos: \n")
+            for index, todo in enumerate(todos):
+                todo = todo.strip("\n")
+                print(f"{index + 1}. {todo}")
+        else:
+            print("Your todo list is empty!")
 
     elif command.startswith("edit"):
-        number = int(command[5:])
-        todos = utils.get_todos()
+        try:
+            number = int(command[5:])
+            todos = utils.get_todos()
 
-        todo = input("Enter a new todo: ")
-        index = number - 1
-        print(f"Todo '{todos[index].strip("\n")}' has been edited.")
+            todo = input("Enter a new todo: ")
+            index = number - 1
+            print(f"Todo '{todos[index].strip("\n")}' has been edited.")
 
-        todos[index] = todo + "\n"
+            todos[index] = todo + "\n"
 
-        utils.set_todos(todos)
-
+            utils.set_todos(todos)
+        except ValueError:
+            print("Please enter a valid command!")
+            continue
     elif command.startswith("delete"):
-        number = int(command[7:])
+        try:
+            try:
+                number = int(command[7:])
 
-        todos = utils.get_todos()
+                todos = utils.get_todos()
 
-        index = number - 1
-        todo_to_delete = todos[index].strip("\n")
-        todos.pop(index)
+                index = number - 1
+                todo_to_delete = todos[index].strip("\n")
+                todos.pop(index)
 
-        print(f"Todo '{todo_to_delete}' has been deleted.")
+                print(f"Todo '{todo_to_delete}' has been deleted.")
 
-        utils.set_todos(todos)
-
+                utils.set_todos(todos)
+            except IndexError:
+                print("here is no such todo to be deleted.")
+        except ValueError:
+            print("Please enter a valid command!")
+            continue
     elif command.startswith("remove"):
-        todos = utils.get_todos()
+        try:
+            todos = utils.get_todos()
 
-        todos.pop()
-        print("The last todo has been removed.")
-        utils.set_todos(todos)
+            todos.pop()
+            print("The last todo has been removed.")
+            utils.set_todos(todos)
+        except IndexError:
+            print("here is no such todo to be removed.")
+            continue
+    elif command.startswith("clear"):
+        try:
+            todos = utils.get_todos()
+            todos.clear()
+
+            print("The todo list has been cleared.")
+            utils.set_todos(todos)
+
+        except IndexError:
+            print("Please enter a valid command!")
 
     elif command.startswith("help"):
 
