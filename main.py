@@ -1,45 +1,68 @@
 
-todos = []
 
 print("Type 'help' to get all of the command!")
 while True:
     command = input(">> ").lower().strip()
 
-    if command == "add":
-        todo = input("Enter a todo: ")
+    if command.startswith("add"):
+        with open("files/todos.txt", "r") as file:
+            todos = file.readlines()
+        todo = command[4:] + "\n"
         todos.append(todo)
 
-    elif command == "show":
-        for todo in todos:
-            print(todo)
+        with open("files/todos.txt", "w") as file:
+            file.writelines(todos)
 
-    elif command == "edit":
-        number = int(input("Enter a number to edit: "))
+    elif command.startswith("show"):
+        print("Your Todos: ")
+        with open("files/todos.txt", "r") as file:
+            todos = file.readlines()
+        for index, todo in enumerate(todos):
+            todo = todo.strip("\n")
+            print(f"{index + 1}. {todo}")
+
+    elif command.startswith("edit"):
+        number = int(command[5:])
+        with open("files/todos.txt", "r") as file:
+            todos = file.readlines()
+
         todo = input("Enter a todo: ")
-        todos[number - 1] = todo
+        index = number - 1
+        print(f"Todo '{todos[index].strip("\n")}' has been edited.")
 
-    elif command == "delete":
-        number = int(input("Enter a number to delete: "))
-        todos.pop(number - 1)
+        todos[index] = todo + "\n"
 
-    elif command == "remove":
+        with open("files/todos.txt", "w") as file:
+            file.writelines(todos)
+
+    elif command.startswith("delete"):
+        number = int(command[7:])
+        with open("files/todos.txt", "r") as file:
+            todos = file.readlines()
+            index = number - 1
+            todo_to_delete = todos[index].strip("\n")
+        todos.pop(index)
+        print(f"Todo '{todo_to_delete}' has been deleted.")
+        with open("files/todos.txt", "w") as file:
+            file.writelines(todos)
+
+    elif command.startswith("remove"):
+        with open("files/todos.txt", "r") as file:
+            todos = file.readlines()
+
         todos.pop()
+        print("The last todo has been removed.")
+        with open("files/todos.txt", "w") as file:
+            file.writelines(todos)
 
-    elif command == "help":
-        print("""
-use the commands below:
+    elif command.startswith("help"):
+        with open("files/help.txt", "r") as get_file:
+            helps = get_file.readlines()
+        for get_help in helps:
+            get_help = get_help.strip("\n")
+            print(get_help)
 
-add - to add a new todo
-show - to show the todo 
-edit - to edit the todo 
-delete - to delete the todo
-remove - to remove the todo
-help - to show the commands
-exit - to exit the program
-
-        """)
-
-    elif command == "exit":
+    elif command.startswith("exit"):
         print("Thanks for using this program!")
         break
 

@@ -1,0 +1,9 @@
+use the commands below:
+
+add - to add a new todo
+show - to show the todo
+edit - to edit the todo
+delete - to delete the todo
+remove - to remove the todo
+help - to show the commands
+exit - to exit the program
