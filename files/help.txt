@@ -1,9 +1,16 @@
-use the commands below:
+use the commands bellow:
 
-add - to add a new todo
-show - to show the todo
-edit - to edit the todo
-delete - to delete the todo
-remove - to remove the todo
-help - to show the commands
+add - to add a new todo list
+    e.g. add {write an item here}
+edit - to edit a todo list
+    e.g. edit {write a number here}
+show - to show the todo list
+remove - to remove a last todo from the list
+delete - to delete a todo from the list
+    e.g. delete {write a number here}
+help - to get a list of commands
 exit - to exit the program
+
+Note: be sure to include space after add, edit and delete command.
+     be aware of that!
+
