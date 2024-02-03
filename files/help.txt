@@ -8,6 +8,7 @@ show - to show the todo list
 remove - to remove a last todo from the list
 delete - to delete a todo from the list
     e.g. delete {write a number here}
+clear - to clear the todo list
 help - to get a list of commands
 exit - to exit the program
 

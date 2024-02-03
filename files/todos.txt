@@ -1,6 +1,4 @@
-buy new T-shirt
-buy a brand-new shoes
-learn most pythons language
 fix the bug
-is it work fine?
-i don`t believe it!
+refactor your code
+sample is simple
+do more projects

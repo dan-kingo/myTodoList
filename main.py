@@ -5,7 +5,7 @@ import time
 sample CLI based TODO list that provide different functionalities,
 
 developed by @dan-kingo
-visit my github page: https://github.com/dan-kingo
+visit my github page: https://github.com/dan-kingo/myTodoList
 """
 
 today = time.strftime("%b %d, %Y at %I:%M:%S %p")
@@ -44,8 +44,10 @@ while True:
             todos = utils.get_todos()
 
             todo = input("Enter a new todo: ")
+
             index = number - 1
-            print(f"Todo '{todos[index].strip("\n")}' has been edited.")
+            todo_to_edit = todos[index].strip("\n")
+            print(f"Todo '{todo_to_edit}' has been edited.")
 
             todos[index] = todo + "\n"
 
