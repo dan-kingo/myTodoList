@@ -5,7 +5,7 @@ import time
 sample CLI based TODO list that provide different functionalities,
 
 developed by @dan-kingo
-visit my github page: https://github.com/dan-kingo/myTodoList
+visit my github page: https://github.com/dan-kingo/myTodoList/tree/master
 """
 
 today = time.strftime("%b %d, %Y at %I:%M:%S %p")

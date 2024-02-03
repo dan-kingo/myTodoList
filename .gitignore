@@ -1,4 +1,6 @@
 .venv/
 venv/
+virtualenv/
+gui.py
 .idea/
 __pycache__/
