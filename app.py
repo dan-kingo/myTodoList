@@ -10,10 +10,16 @@ list_box = pyGUI.Listbox(values=utils.get_todos(),
                          size=(50, 10),
                          enable_events=True)
 
+edit_button = pyGUI.Button("Edit")
+delete_button = pyGUI.Button("Delete")
+exit_button = pyGUI.Button("Exit")
 add_button = pyGUI.Button("Add")
 
 app = pyGUI.Window("My Todo App",
-                   layout=[[input_label], [input_box, add_button], [list_box]],
+                   layout=[[input_label],
+                           [input_box, add_button],
+                           [list_box],
+                           [edit_button, delete_button, exit_button]],
                    font=("Montserrat", 18))
 while True:
     event, values = app.read()
@@ -24,7 +30,19 @@ while True:
             new_todo = values['todo'] + "\n"
             todos.append(new_todo)
             utils.set_todos(todos)
+            app['todos'].update(values=todos)
 
+        case "Edit":
+            todo_to_edit = values['todos'][0]
+            new_todo = values['todo']
+            todos = utils.get_todos()
+            index = todos.index(todo_to_edit)
+            todos[index] = new_todo
+            utils.set_todos(todos)
+            app['todos'].update(values=todos)
+
+        case "todos":
+            app['todo'].update(value=values['todos'][0])
         case pyGUI.WIN_CLOSED:
             break
 
