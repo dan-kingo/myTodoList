@@ -41,6 +41,17 @@ while True:
             utils.set_todos(todos)
             app['todos'].update(values=todos)
 
+        case "Delete":
+            todo_to_delete = values['todos'][0]
+            todos = utils.get_todos()
+            todos.remove(todo_to_delete)
+            utils.set_todos(todos)
+
+            app['todos'].update(values=todos)
+            app['todo'].update(value='')
+
+        case "Exit":
+            break
         case "todos":
             app['todo'].update(value=values['todos'][0])
         case pyGUI.WIN_CLOSED:

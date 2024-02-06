@@ -1,4 +1,4 @@
 fix the bug
-refactor your code
 sample is simple
 do more projects
+refactor your code
