@@ -1,9 +1,15 @@
 import PySimpleGUI as pyGUI
 import time
 import utils
+import os
+
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as file:
+        pass
 
 input_label = pyGUI.Text("Write in a todo: ")
-input_box = pyGUI.InputText(tooltip="Type a todo",key="todo")
+input_box = pyGUI.InputText(tooltip="Type a todo",
+                            key="todo")
 
 time_label = pyGUI.Text('', key="clock")
 
