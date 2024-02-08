@@ -3,9 +3,9 @@ import time
 import utils
 import os
 
-if not os.path.exists("todos.txt"):
-    with open("todos.txt", "w") as file:
-        pass
+# if not os.path.exists("files/todos.txt"):
+#     with open("files/todos.txt", "w") as file:
+#         pass
 
 input_label = pyGUI.Text("Write in a todo: ")
 input_box = pyGUI.InputText(tooltip="Type a todo",
@@ -71,7 +71,12 @@ while True:
         case "Exit":
             break
         case "todos":
-            app['todo'].update(value=values['todos'][0])
+            try:
+                app['todo'].update(value=values['todos'][0])
+            except IndexError:
+                pyGUI.popup("Please select an item first!",
+                            font=("Montserrat", 18),
+                            title="Information")
         case pyGUI.WIN_CLOSED:
             break
 
